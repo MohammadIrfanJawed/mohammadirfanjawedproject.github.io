@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+<meta http-equiv="X-AU-Compatible" content="IE=edge">
+        <title>Mohammad_Online_Shopping</title>
+        
+	    <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://www.paypal.com/sdk/js?client-id=Aaf0yJvLcVCxwBgb21lDot_Fzbdy_2eRU7ZhL2njPhLyz1RUcVV3F-iGGmwxKMSybKDghTzHGIQvMFHA"></script>
+        <script src="/script.js"> </script>
+</head>
+
+<body>
+ <div class="header">
+    <nav>
+        <div class="logo"><img src="Logo.png" width="325px"></div>
+        <div class="menu">
+            <a href="index.html">HOME</a>
+            <a href="#">FASHION</a>
+            <a href="#">ACCOUNT</a> 
+          </div>
+          <img src="cart.png" width="30px" height="30px"> 
+    </nav>
+    <div class="Display">
+      <div class="left">
+              <form action="Payment.html" method="GET">
+                  <br>Customer Details<br>
+                  <input type="text" placeholder="First Name" id="firstname" name="firstname" required>
+                  <input type="text" placeholder="Last Name" id="lastname" name="lastname" required>
+                  <input type="email" placeholder="Email Adress" id="email" name="email" required>
+                  <input type="tel" placeholder="Phone Number" id="phonenumber" name="phonenumber" required>
+                  <br>Shipping Address<br>
+                  <input type="text" placeholder="House No." id="houseno" name="houseno" required>
+                  <input type="text" placeholder="Street" id="street" name="street" required>
+                  <input type="text" placeholder="city" id="city" name="city"  required>
+                  <input type="text" placeholder="State" id="state" name="state" required>
+                  <input type="text" placeholder="Country" id="country" name="country" required>
+                  <input type="text" placeholder="zip" id="zip" name="zip" required>
+                  
+                   </form> 
+                 </div>
+
+                 <div class="right">    <br> <br>
+                  <input type="text" placeholder="ITEM CODE:LJK0000" name="itemcode" id="itemcode" required>
+                  <input type="number" placeholder="price" id="price" name="price" required><br><br>
+    <div id="paypal"></div>
+    <script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+         return actions.order.create({
+           purchase_units: [
+               {
+                 amount: {
+                    value: price.value,
+                 }, description: "Item_code: " + itemcode.value + ", " + firstname.value + " " + lastname.value + ", " +
+              email.value + ", " + phonenumber.value + ", " + houseno.value + ", " 
+              + street.value + ", " + city.value + ", " + zip.value + ", " + country.value
+               },
+           ],
+          });
+  },
+   onApprove: function(data, actions){
+       return actions.order.capture().then(function (details) {
+     alert("Transaction completed by " + details.payer.name.
+     given_name) })
+  },
+  })
+  .render("#paypal")
+</script>
+  </div>
+</div>
+<p> <br>
+  <br>
+<div class="footer">
+<h4>Copyright © 1999-2022 Mohammad_Online_Shopping. All rights reserved.</h4>
+</div>
+</p>
+</body>
+</html>  
+
+
